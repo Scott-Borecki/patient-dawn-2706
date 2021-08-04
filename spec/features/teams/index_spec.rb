@@ -46,10 +46,10 @@ RSpec.describe 'teams index page (/teams)' do
         end
       end
 
-      xit 'displays the average player age of each team' do
+      it 'displays the average player age of each team' do
         Team.all.each do |team|
           within "#team-#{team.id}" do
-            expect(page).to have_content(team.average_player_age.round(1))
+            expect(page).to have_content("Average Player Age: #{team.average_player_age.round(1)}")
           end
         end
       end

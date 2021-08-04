@@ -1,7 +1,8 @@
 <% @teams.each do |team| %>
   <section id='team-<%= team.id %>'>
     <p>
-      <%= team.nickname %><br>
+      <h3><%= team.nickname %></h3>
+      Average Player Age: <%= team.average_player_age.round(1) %>
     </p>
   </section>
 <% end %>
