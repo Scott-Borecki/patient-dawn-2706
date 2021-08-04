@@ -6,4 +6,9 @@ class Competition < ApplicationRecord
       .select('teams.*')
       .distinct
   end
+
+  def average_player_age
+    participants.joins(team: :players)
+      .average(:age)
+  end
 end
