@@ -54,7 +54,7 @@ RSpec.describe 'teams index page (/teams)' do
         end
       end
 
-      xit 'displays the teams by average age from highest to lowest' do
+      it 'displays the teams by average age from highest to lowest' do
         expect(team5.nickname).to appear_before(team2.nickname)
         expect(team2.nickname).to appear_before(team3.nickname)
         expect(team3.nickname).to appear_before(team1.nickname)
