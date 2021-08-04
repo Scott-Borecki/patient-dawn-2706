@@ -44,6 +44,15 @@ RSpec.describe 'competitions index page (/competitions)' do
           expect(page).to have_link(competition.name)
         end
       end
+
+      it 'links to the competitions show page' do
+        Competition.all.each do |competition|
+          visit '/competitions'
+          click_link competition.name
+
+          expect(current_path).to eq(competition_path(competition.id))
+        end
+      end
     end
   end
 end
