@@ -1,29 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'competitions show page (/competitions/:id)' do
-  let!(:competition1) do
-    Competition.create!(
-      name: "Men's Regional",
-      location: 'Louisville',
-      sport: 'Basketball'
-    )
-  end
-
-  let!(:competition2) do
-    Competition.create!(
-      name: 'World Cup',
-      location: 'Brazil',
-      sport: 'Soccer'
-    )
-  end
-
-  let!(:competition3) do
-    Competition.create!(
-      name: 'Fiba World Championship',
-      location: 'Austrailia',
-      sport: 'Handball'
-    )
-  end
+  let!(:competition1) { Competition.create!(name: "Men's Regional",location: 'Louisville',sport: 'Basketball') }
+  let!(:competition2) { Competition.create!(name: 'World Cup', location: 'Brazil', sport: 'Soccer') }
+  let!(:competition3) { Competition.create!(name: 'Fiba World Championship', location: 'Austrailia', sport: 'Handball') }
 
   let!(:team1) { Team.create!(hometown: 'Lessburg', nickname: 'Rockets') }
   let!(:team2) { Team.create!(hometown: 'Sandwich', nickname: 'Blue Knights') }
