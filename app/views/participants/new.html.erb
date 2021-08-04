@@ -1,0 +1,9 @@
+<%= form_with model: [@competition, @participant], local: true do |form| %>
+  <%= form.label :nickname, 'Nickname:' %>
+  <%= form.text_field :nickname %>
+
+  <%= form.label :hometown, 'Hometown:' %>
+  <%= form.text_field :hometown %>
+
+  <%= form.submit 'Submit' %>
+<% end %>

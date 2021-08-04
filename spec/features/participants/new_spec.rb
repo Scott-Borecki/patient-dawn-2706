@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'competitions show page (/competitions/:id)' do
+RSpec.describe 'new competition participant page (/competitions/:competition_id/participants/new)' do
   let!(:competition1) do
     Competition.create!(
       name: "Men's Regional",
@@ -69,68 +69,15 @@ RSpec.describe 'competitions show page (/competitions/:id)' do
   specify { expect(Team.all.count.positive?).to be true }
 
   describe 'as a user' do
-    describe 'when I visit the competitions show page' do
-      before { visit competition_path(competition1) }
+    describe 'when I visit the new competition participant page' do
+      before { visit new_competition_participant_path(competition1) }
 
-      specify { expect(current_path).to eq(competition_path(competition1)) }
+      specify { expect(current_path).to eq(new_competition_participant_path(competition1)) }
 
-      it 'displays the competitions name, location, and sport' do
-        expect(page).to have_content(competition1.name)
-        expect(page).to have_content(competition1.location)
-        expect(page).to have_content(competition1.sport)
-
-        expect(page).to have_no_content(competition2.name)
-        expect(page).to have_no_content(competition2.location)
-        expect(page).to have_no_content(competition2.sport)
-
-        expect(page).to have_no_content(competition3.name)
-        expect(page).to have_no_content(competition3.location)
-        expect(page).to have_no_content(competition3.sport)
-      end
-
-      context 'when a team is in the competition' do
-        it 'displays the nickname and hometown of the team' do
-          teams_in_competition = competition1.teams
-
-          teams_in_competition.each do |team|
-            within "#team-#{team.id}" do
-              expect(page).to have_content(team.nickname)
-              expect(page).to have_content(team.hometown)
-            end
-          end
-        end
-      end
-
-      context 'when a team is not in the competition' do
-        it 'does not display the nickname and hometown of the team' do
-          teams_not_in_competition = [team4, team5]
-
-          teams_not_in_competition.each do |team|
-            expect(page).to have_no_content(team.nickname)
-            expect(page).to have_no_content(team.hometown)
-          end
-        end
-      end
-
-      it 'displays the average age of all players in the competition' do
-        expect(page).to have_content("Average Player Age: #{competition1.average_player_age.round(1)}")
-        expect(page).to have_no_content("Average Player Age: #{competition2.average_player_age.round(1)}")
-        expect(page).to have_no_content("Average Player Age: #{competition3.average_player_age.round(1)}")
-      end
-
-      it 'displays a link to register a new team' do
-        expect(page).to have_link('Register a New Team')
-      end
-
-      describe 'when I click the link to register a new team' do
-        before { click_link 'Register a New Team' }
-
-        it 'takes me to a new page where I see a form' do
-          expect(current_path).to eq(new_competition_participant_path(competition1))
-          expect(page).to have_field('Nickname:')
-          expect(page).to have_field('Hometown:')
-          expect(page).to have_button('Submit')
-        end
+      it 'displays a form to create a new participant team' do
+        expect(page).to have_field('Nickname:')
+        expect(page).to have_field('Hometown:')
+        expect(page).to have_button('Submit')
       end
     end
   end

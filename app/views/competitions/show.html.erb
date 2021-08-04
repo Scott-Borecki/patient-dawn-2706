@@ -16,3 +16,5 @@
 <p>
   Average Player Age: <%= @competition.average_player_age.round(1) %>
 </p>
+
+<%= link_to 'Register a New Team', new_competition_participant_path(@competition) %>
