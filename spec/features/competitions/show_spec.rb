@@ -107,8 +107,8 @@ RSpec.describe 'competitions show page (/competitions/:id)' do
 
         it 'takes me to a new page where I see a form' do
           expect(current_path).to eq(new_competition_participant_path(competition1))
-          expect(page).to have_field('Nickname:')
-          expect(page).to have_field('Hometown:')
+          expect(page).to have_field(:participant_nickname)
+          expect(page).to have_field(:participant_hometown)
           expect(page).to have_button('Submit')
         end
       end
