@@ -50,6 +50,7 @@ RSpec.describe Competition do
 
   describe 'relationships' do
     it { should have_many(:participants) }
+    it { should have_many(:teams).through(:participants) }
   end
 
   describe 'instance methods' do

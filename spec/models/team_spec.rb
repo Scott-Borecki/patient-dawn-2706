@@ -35,6 +35,7 @@ RSpec.describe Team do
   specify { expect(Team.all.count.positive?).to be true }
 
   describe 'relationships' do
+    it { should have_many(:competitions).through(:participants) }
     it { should have_many(:participants) }
     it { should have_many(:players) }
   end

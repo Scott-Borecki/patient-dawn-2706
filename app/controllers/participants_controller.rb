@@ -7,7 +7,6 @@ class ParticipantsController < ApplicationController
 
   def create
     team = Team.create!(participant_params)
-
     @competition.participants.create!(team: team)
 
     redirect_to competition_path(@competition)
