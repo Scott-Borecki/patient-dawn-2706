@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Team do
+RSpec.describe Competition do
   describe 'relationships' do
     it { should have_many(:participants) }
-    it { should have_many(:players) }
   end
 end
