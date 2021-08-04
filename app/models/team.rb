@@ -9,6 +9,8 @@ class Team < ApplicationRecord
       .order(average_player_age: :desc)
   end
 
+  # NOTE: This method is only needed for dynamic testing.
+  #       See spec/features/teams/index_spec.rb:49
   def average_player_age
     players.average(:age)
   end
