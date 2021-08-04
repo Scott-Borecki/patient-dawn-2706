@@ -75,9 +75,26 @@ RSpec.describe 'new competition participant page (/competitions/:competition_id/
       specify { expect(current_path).to eq(new_competition_participant_path(competition1)) }
 
       it 'displays a form to create a new participant team' do
-        expect(page).to have_field('Nickname:')
-        expect(page).to have_field('Hometown:')
+        expect(page).to have_field(:participant_nickname)
+        expect(page).to have_field(:participant_hometown)
         expect(page).to have_button('Submit')
+      end
+
+      describe 'when I fill in the form and click submit' do
+        before do
+          fill_in :participant_nickname, with: 'Celtics'
+          fill_in :participant_hometown, with: 'Boston'
+          click_button 'Submit'
+        end
+
+        it 'redirects me back to the competitions show page' do
+          expect(current_path).to eq(competition_path(competition1))
+        end
+
+        it 'displays the new team on the competitions show page' do
+          expect(page).to have_content('Boston')
+          expect(page).to have_content('Celtics')
+        end
       end
     end
   end
