@@ -29,9 +29,9 @@ RSpec.describe 'competitions index page (/competitions)' do
 
   describe 'as a user' do
     describe 'when I visit the competition index' do
-      before { visit '/competitions' }
+      before { visit competitions_path }
 
-      specify { expect(current_path).to eq('/competitions') }
+      specify { expect(current_path).to eq(competitions_path) }
 
       it 'displays the names of all the competitions' do
         Competition.all.each do |competition|
@@ -47,10 +47,10 @@ RSpec.describe 'competitions index page (/competitions)' do
 
       it 'links to the competitions show page' do
         Competition.all.each do |competition|
-          visit '/competitions'
+          visit competitions_path
           click_link competition.name
 
-          expect(current_path).to eq(competition_path(competition.id))
+          expect(current_path).to eq(competition_path(competition))
         end
       end
     end
