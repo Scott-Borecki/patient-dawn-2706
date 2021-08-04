@@ -39,6 +39,15 @@ RSpec.describe Team do
     it { should have_many(:players) }
   end
 
+  describe 'class methods' do
+    describe '.order_by_average_player_age' do
+      it 'orders the teams by average player age (highest to lowest)' do
+        expected = [team5, team2, team3, team1, team4]
+        expect(Team.order_by_average_player_age).to eq(expected)
+      end
+    end
+  end
+
   describe 'instance methods' do
     describe '#average_player_age' do
       it 'returns the average player age of the team' do
